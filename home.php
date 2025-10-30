@@ -18,17 +18,21 @@ session_start();
     <script 
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
     </script>
+    <style>
+        
+
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg" style=" background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
     <div class="container-fluid">
-    <a class="navbar-brand" href="#">Admin Kasir</a>
+    <a class="navbar-brand" href="#" style="color: white; padding-left: 20px; font-weight: bold;">Admin Kasir</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto" style="padding-right: 20px;">
         <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="home.php">Produk</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Penjualan</a></li>
@@ -44,7 +48,7 @@ session_start();
     <p>Gunakan navigasi di atas untuk mengelola produk, penjualan, dan laporan.</p>
 </div>
 
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <h2 class="mb-4 text-center"></h2>
 
     <table class="table table-bordered table-striped table-hover">
@@ -80,7 +84,7 @@ session_start();
                 echo "</tr>";
             }
             ?>
-        </tbody>
+        </tbody> -->
 
 
 
