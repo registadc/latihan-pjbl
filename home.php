@@ -2,7 +2,6 @@
 include "koneksi.php";
 session_start();
 
-
 ?>
 
 <!DOCTYPE html>
@@ -19,72 +18,95 @@ session_start();
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
     </script>
     <style>
-        
+        .body{
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-login {
+      background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+    }
+    .btn-login:hover {
+      opacity: 0.9;
+    }
 
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg" style=" background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
-    <div class="container-fluid">
-    <a class="navbar-brand" href="#" style="color: white; padding-left: 20px; font-weight: bold;">Admin Kasir</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto" style="padding-right: 20px;">
-        <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="home.php">Produk</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Penjualan</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Laporan</a></li>
-        <li class="nav-item"><a class="nav-link text-danger" href="logout.php">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php include 'navbar.php'; ?>
 
 <div class="container mt-4">
     <h1>Selamat Datang di Sistem Kasir</h1>
     <p>Gunakan navigasi di atas untuk mengelola produk, penjualan, dan laporan.</p>
 </div>
 
-<!-- <div class="container mt-5">
-    <h2 class="mb-4 text-center"></h2>
+ 
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="text-center mb-4 fw-bold">Form Input Data Penjualan</h3>
 
-    <table class="table table-bordered table-striped table-hover">
-        <thead class="table-light text-center">
-            <tr>
-                <th>ID Produk</th>
-                <th>Nama Produk</th>
-                <th>Nama Kategori</th>
-                <th>Harga Jual</th>
-                <th>Harga Modal</th>
-                <th>Stok</th>
-                <th>Tanggal Ditambahkan</th>
-            </tr>
-        </thead>
-        <tbody>
-           
-            <?php
+          <form action="proses_tambah.php" method="POST">
 
-            $sql = "SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga_jual, produk.harga_modal, produk.stok, produk.tanggal_ditambahkan 
-                    FROM produk 
-                    JOIN kategori ON produk.id_kategori = kategori.id_kategori";
-            $query = mysqli_query($koneksi, $sql);
+            <!-- Nama Produk -->
+            <div class="mb-3">
+              <label class="form-label">Nama Produk</label>
+              <input type="text" name="nama_produk" class="form-control" placeholder="Masukkan nama produk" required>
+            </div>
 
-            while($produk = mysqli_fetch_assoc($query)){
-                echo "<tr>";
-                echo "<td class='text-center'>".$produk['id_produk']."</td>";
-                echo "<td>".$produk['nama_produk']."</td>";
-                echo "<td>".$produk['nama_kategori']."</td>";
-                echo "<td class='text-end'>Rp ".number_format($produk['harga_jual'], 0, ',', '.')."</td>";
-                echo "<td class='text-end'>Rp ".number_format($produk['harga_modal'], 0, ',', '.')."</td>";
-                echo "<td class='text-center'>".$produk['stok']."</td>";
-                echo "<td class='text-center'>".$produk['tanggal_ditambahkan']."</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody> -->
+            <!-- Harga Modal -->
+            <div class="mb-3">
+              <label class="form-label">Harga Modal (Rp)</label>
+              <input type="number" name="harga_modal" class="form-control" placeholder="Masukkan harga modal" required>
+            </div>
+
+            <!-- Harga Jual -->
+            <div class="mb-3">
+              <label class="form-label">Harga Jual (Rp)</label>
+              <input type="number" name="harga_jual" class="form-control" placeholder="Masukkan harga jual" required>
+            </div>
+
+            <!-- Jumlah Dibeli -->
+            <div class="mb-3">
+              <label class="form-label">Jumlah Dibeli</label>
+              <input type="number" name="jumlah_dibeli" class="form-control" placeholder="Masukkan jumlah yang dibeli" required>
+            </div>
+
+            <!-- Tanggal Penjualan -->
+            <div class="mb-3">
+              <label class="form-label">Tanggal Penjualan</label>
+              <input type="date" name="tanggal_penjualan" class="form-control" required>
+            </div>
+
+            <!-- Metode Pembayaran -->
+            <div class="mb-3">
+              <label class="form-label">Metode Pembayaran</label>
+              <select name="metode_pembayaran" class="form-select" required>
+                <option value="">-- Pilih Metode Pembayaran --</option>
+                <option value="tunai">Tunai</option>
+                <option value="qris">QRIS</option>
+                <option value="debit">Debit</option>
+                <option value="e-wallet">E-Wallet</option>
+              </select>
+            </div>
+
+            <!-- Tombol Simpan -->
+            <button type="submit" class="btn w-100 text-white fw-bold" 
+                    style="background: linear-gradient(to right, #c9a0dc, #f4a6e6);">
+              Simpan Data Penjualan
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
